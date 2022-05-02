@@ -13,10 +13,10 @@ app.use(cors());
 app.use(express.json());
 //
 let db = mongoClient.db("batepapo_uol");
-app.post("/", async (req, res) => {
+app.post("/participants", async (req, res) => {
   const name = req.body;
   const nameSchema = Joi.object({
-    name: Joi.string().required()
+    name: Joi.string().required(),
   });
   const getNameValidation = nameSchema.validate(name, { abortEarly: false });
   if (getNameValidation.error) {
@@ -24,26 +24,30 @@ app.post("/", async (req, res) => {
     return;
   }
   try {
-    const newUser = await db.collection("login").findOne({name:name.name});
-    if(newUser) {
-        res.status(409).send("Deu ruim, já tem esse nome...")
-        return
+    const newUser = await db.collection("login").findOne({ name: name.name });
+    if (newUser) {
+      res.status(409).send("Deu ruim, já tem esse nome...");
+      return;
     }
-    await db
-      .collection("login")
-      .insertOne({ ...name, lastStatus: Date.now() });
-    await db
-      .collection("login")
-      .insertOne({
-        from: "xxx",
-        to: "Todos",
-        text: "entra na sala...",
-        time: dayjs().format("HH:mm:ss"),
-      });
-      console.log("deu bom")
-  } catch(e) {
-      console.log(e)
+    await db.collection("login").insertOne({ ...name, lastStatus: Date.now() });
+    await db.collection("login").insertOne({
+      from: name.name,
+      to: "Todos",
+      text: "entra na sala...",
+      time: dayjs().format("HH:mm:ss"),
+    });
+    console.log("deu bom");
+  } catch (e) {
+    console.log(e);
   }
   res.send("foi enviado o bagulho");
+});
+app.get("/participants", async (req, res) => {
+  try {
+    const participants = await db.collection('login').find().toArray()
+    console.log(participants);
+  } catch (e) {
+    console.log('deu xabu',e)
+  }
 });
 app.listen(5000);
