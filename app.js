@@ -65,7 +65,7 @@ app.post("/messages", async (req, res) => {
     return res.status(422).send(validationMessage.error.details);
   }
   try {
-    const validaUser = await db.collection("login").findOne(new Object(user));
+    const validaUser = await db.collection("login").findOne({name:user});
     if (!validaUser) {
       return res.status(422).send("usuario não encontrado");
     }
@@ -87,12 +87,14 @@ app.get("/messages", async (req, res) => {
   try {
     const messages = await db
       .collection("messages")
-      .find({ to: { $in: ["Todos", user] } })
+      .find({$or:[{to: {$in:["Todos",user]}},
+      {from: user}]})
       .sort({ _id: -1 })
       .limit(limit)
       .toArray();
     res.send(messages);
   } catch (e) {
+    console.log(e)
     res.sendStatus(422);
   }
 });
