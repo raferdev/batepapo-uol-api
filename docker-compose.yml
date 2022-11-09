@@ -9,8 +9,6 @@ services:
       - $PORT_HOST
     ports:
       - $PORT_HOST:$PORT_HOST
-    networks:
-      - back-batepapo-uol
     depends_on:
       - mongodb
 
@@ -18,8 +16,3 @@ services:
     image: mongo:5.0
     env_file:
      - .env
-    networks:
-      - back-batepapo-uol
-
-networks:
-  back-batepapo-uol:
