@@ -199,4 +199,6 @@ async function userActivity() {
   }
 }
 setInterval(userActivity, 15000);
-app.listen(process.env.PORT_HOST);
+app.listen(process.env.PORT_HOST, ()=> {
+  console.log(`Hello i'm running on port = ${process.env.PORT_HOST}`)
+});
