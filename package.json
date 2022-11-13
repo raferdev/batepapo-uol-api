@@ -1,11 +1,11 @@
 {
-  "name": "projeto12-batepapo-uol-api",
+  "name": "batepapo-uol-api",
   "type": "module",
   "version": "1.0.0",
   "description": "'projeto back-end usando NodeJS e Mongo DB'",
   "main": "app.js",
   "scripts": {
-    "start": "echo \"Error: no test specified\" && exit 1"
+    "start": "docker-compose up --build"
   },
   "author": "",
   "license": "ISC",
