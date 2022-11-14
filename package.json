@@ -1,14 +1,25 @@
 {
   "name": "batepapo-uol-api",
   "type": "module",
-  "version": "1.0.0",
-  "description": "'projeto back-end usando NodeJS e Mongo DB'",
-  "main": "app.js",
-  "scripts": {
-    "start": "docker-compose up --build"
+  "version": "1.2.0",
+  "description": "This is a simple back-end to simulate one online chat API.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raferdev/batepapo-uol-api.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "NodeJS",
+    "MongoDB",
+    "Express",
+    "JOI",
+    "CHAT",
+    "API"
+  ],
+  "author": "raferdev@outlook.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raferdev/batepapo-uol-api/issues"
+  },
   "dependencies": {
     "chalk": "^5.0.1",
     "cors": "^2.8.5",

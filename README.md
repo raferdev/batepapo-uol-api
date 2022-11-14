@@ -178,6 +178,10 @@ Valid types: ["message", "private_message"].
   "type":""
 }
 ```
+**DELETE** - */messages/:message_id* - User can delete the message.
+```
+{}
+```
 
 
 ---
