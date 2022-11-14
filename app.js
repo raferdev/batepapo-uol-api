@@ -137,7 +137,7 @@ app.delete("/messages/:message_id", async (req, res) => {
     return res.sendStatus(422);
   }
 });
-app.put("/messages/message_id", async (req, res) => {
+app.put("/messages/:message_id", async (req, res) => {
   const { message_id } = req.params;
   const messageUp = req.body;
   const user = req.headers.user;

@@ -141,22 +141,44 @@ This route have setTimeout to verify activity, if user frontend dont send new re
 
 **GET** - */participants* - API return one array with online users.
 ```
-  {
-  username:"",
-  avatar:""
-  tweet: ""
-  }
+  [{
+   "name":"john"
+  },{
+   "name":"will"
+  },...]
 ```
-**POST** /login - object format proposal below (but backend dont verify the object format)
+**POST** - */messages* - Send message to API redirect for one user or all chat.
+
+HEADER:
 ```
 {
-  username:"",
-  password:""
+  "user":""
 }
 ```
-Will return 'OK'
+ BODY:
+```
+{
+  "to":"",
+  "text":"",
+  "type":""
+}
+```
+Valid types: ["message", "private_message"].
 
-ANNNDD that is it... I said was my first project.
+"message": all users can see on chat.
+
+"private_message": only the one user you sended.
+
+**PUT** - */messages/:message_id* - User can edit the message, need id from mongoDB.
+
+```
+{
+  "to":"",
+  "text":"",
+  "type":""
+}
+```
+
 
 ---
 
